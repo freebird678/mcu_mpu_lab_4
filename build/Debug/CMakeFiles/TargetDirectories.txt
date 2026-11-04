@@ -1,0 +1,6 @@
+C:/Users/khait/OneDrive/Documents/Study/MCU_MPU/LAB_4/LAB_4_CODE/build/Debug/CMakeFiles/LAB_4_CODE.dir
+C:/Users/khait/OneDrive/Documents/Study/MCU_MPU/LAB_4/LAB_4_CODE/build/Debug/CMakeFiles/edit_cache.dir
+C:/Users/khait/OneDrive/Documents/Study/MCU_MPU/LAB_4/LAB_4_CODE/build/Debug/CMakeFiles/rebuild_cache.dir
+C:/Users/khait/OneDrive/Documents/Study/MCU_MPU/LAB_4/LAB_4_CODE/build/Debug/cmake/stm32cubemx/CMakeFiles/STM32_Drivers.dir
+C:/Users/khait/OneDrive/Documents/Study/MCU_MPU/LAB_4/LAB_4_CODE/build/Debug/cmake/stm32cubemx/CMakeFiles/edit_cache.dir
+C:/Users/khait/OneDrive/Documents/Study/MCU_MPU/LAB_4/LAB_4_CODE/build/Debug/cmake/stm32cubemx/CMakeFiles/rebuild_cache.dir

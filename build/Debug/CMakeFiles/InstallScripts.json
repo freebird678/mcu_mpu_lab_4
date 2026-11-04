@@ -1,0 +1,8 @@
+{
+	"InstallScripts" : 
+	[
+		"C:/Users/khait/OneDrive/Documents/Study/MCU_MPU/LAB_4/LAB_4_CODE/build/Debug/cmake_install.cmake",
+		"C:/Users/khait/OneDrive/Documents/Study/MCU_MPU/LAB_4/LAB_4_CODE/build/Debug/cmake/stm32cubemx/cmake_install.cmake"
+	],
+	"Parallel" : false
+}
