@@ -12,7 +12,8 @@
 #define RETURN_ERROR 1
 #define RETURN_NORMAL 0
 
-typedef enum {
+typedef enum
+{
     ERROR_SCH_OK = 0,
     ERROR_SCH_TOO_MANY_TASKS,
     ERROR_SCH_CANNOT_DELETE_TASK,
@@ -22,9 +23,9 @@ typedef struct
 {
     // Pointer to the task (must be a "void (void)" function)
     void (*pTask)(void);
-    uint32_t Delay;  // counter variable, counting down, in milliseconds
-    uint32_t Period; // original cycle time, in milliseconds
-    uint32_t RunMe; // counter variable, scheduling = add 1, dispatching = subtract 1
+    uint32_t Delay;  // counter variable, counting down, in ticks
+    uint32_t Period; // original cycle time, in ticks
+    uint32_t RunMe;  // counter variable, scheduling = add 1, dispatching = subtract 1
     uint32_t TaskID; // Incrementally unique
 } sTask;
 

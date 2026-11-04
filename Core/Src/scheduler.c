@@ -38,8 +38,10 @@ void SCH_Init(void)
 uint32_t SCH_Add_Task(void (*pFunction)(void), uint32_t DELAY, uint32_t PERIOD)
 {
     if (pFunction == NULL || current_task_count >= SCH_MAX_TASKS)
+    {
+        Error_code_G = ERROR_SCH_TOO_MANY_TASKS;
         return NO_TASK_ID;
-
+    }
     uint32_t delay_ticks = DELAY / TICK_PERIOD;
     uint32_t period_ticks = PERIOD / TICK_PERIOD;
 
