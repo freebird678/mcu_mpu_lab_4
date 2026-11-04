@@ -30,10 +30,10 @@ typedef struct
 
 // Required
 void SCH_Init(void);
-uint32_t SCH_Add_Task(void (*pFunction)(void), uint32_t DELAY, uint32_t PERIOD);
 void SCH_Update(void);
-uint8_t SCH_Delete_Task(uint32_t taskID);
 void SCH_Dispatch_Tasks(void);
+uint32_t SCH_Add_Task(void (*pFunction)(void), uint32_t DELAY, uint32_t PERIOD);
+uint8_t SCH_Delete_Task(uint32_t taskID);
 //
 
 #endif
