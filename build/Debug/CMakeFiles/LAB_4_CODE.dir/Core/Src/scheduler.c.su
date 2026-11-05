@@ -3,4 +3,4 @@ C:/Users/khait/OneDrive/Documents/Study/MCU_MPU/LAB_4/LAB_4_CODE/Core/Src/schedu
 C:/Users/khait/OneDrive/Documents/Study/MCU_MPU/LAB_4/LAB_4_CODE/Core/Src/scheduler.c:45:10:SCH_Add_Task	56	static
 C:/Users/khait/OneDrive/Documents/Study/MCU_MPU/LAB_4/LAB_4_CODE/Core/Src/scheduler.c:93:9:SCH_Delete_Task	32	static
 C:/Users/khait/OneDrive/Documents/Study/MCU_MPU/LAB_4/LAB_4_CODE/Core/Src/scheduler.c:129:6:SCH_Update	4	static
-C:/Users/khait/OneDrive/Documents/Study/MCU_MPU/LAB_4/LAB_4_CODE/Core/Src/scheduler.c:144:6:SCH_Dispatch_Tasks	16	static
+C:/Users/khait/OneDrive/Documents/Study/MCU_MPU/LAB_4/LAB_4_CODE/Core/Src/scheduler.c:144:6:SCH_Dispatch_Tasks	24	static

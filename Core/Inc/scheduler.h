@@ -38,5 +38,4 @@ uint8_t SCH_Delete_Task(uint32_t taskID);
 //
 
 uint32_t get_time(void);
-
 #endif

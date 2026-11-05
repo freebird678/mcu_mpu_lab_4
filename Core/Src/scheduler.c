@@ -146,27 +146,28 @@ void SCH_Dispatch_Tasks(void)
     if (current_task_count == 0 || SCH_tasks_G[0].RunMe == 0)
         return;
 
-    if (SCH_tasks_G[0].RunMe > 0)
-    {
-        // 1. Run the task
-        (*SCH_tasks_G[0].pTask)();
-        SCH_tasks_G[0].RunMe--;
+    void (*task_to_run)(void) = SCH_tasks_G[0].pTask;
+    // Decrementing RunMe, marking a schedule
+    SCH_tasks_G[0].RunMe--;
 
-        // 2. Only delete/reschedule when all pending runs are cleared!
-        if (SCH_tasks_G[0].RunMe == 0)
+    // Only delete/reschedule when all pending runs are cleared!
+    if (SCH_tasks_G[0].RunMe == 0)
+    {
+        if (SCH_tasks_G[0].Period == 0)
+            SCH_Delete_Task(SCH_tasks_G[0].TaskID);
+        else
         {
-            if (SCH_tasks_G[0].Period == 0)
-                SCH_Delete_Task(SCH_tasks_G[0].TaskID);
-            else
-            {
-                void (*pFunction)(void) = SCH_tasks_G[0].pTask;
-                uint32_t period_ms = SCH_tasks_G[0].Period * TICK_PERIOD;
-                SCH_Delete_Task(SCH_tasks_G[0].TaskID);
-                SCH_Add_Task(pFunction, period_ms, period_ms);
-            }
-            // Handling simultaneous arrivals
-            if (current_task_count > 0 && SCH_tasks_G[0].Delay == 0)
-                SCH_tasks_G[0].RunMe = 1;
+            void (*pFunction)(void) = SCH_tasks_G[0].pTask;
+            uint32_t period_ms = SCH_tasks_G[0].Period * TICK_PERIOD;
+            SCH_Delete_Task(SCH_tasks_G[0].TaskID);
+            SCH_Add_Task(pFunction, period_ms, period_ms);
         }
+        // Handling simultaneous arrivals
+        if (current_task_count > 0 && SCH_tasks_G[0].Delay == 0)
+            SCH_tasks_G[0].RunMe = 1;
     }
+
+    // Run the task
+    if (task_to_run != NULL)
+        (*task_to_run)();
 }
