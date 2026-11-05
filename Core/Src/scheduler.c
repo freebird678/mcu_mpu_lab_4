@@ -4,9 +4,15 @@
 static sTask SCH_tasks_G[SCH_MAX_TASKS];
 static uint32_t taskID_gen;
 static uint32_t current_task_count;
+static uint32_t system_ticks = 0;
 
 // Global public data
 uint8_t Error_code_G;
+
+uint32_t get_time(void)
+{
+    return system_ticks * TICK_PERIOD;
+}
 
 /**
  * What SCH_Init does:
@@ -26,6 +32,7 @@ void SCH_Init(void)
         SCH_tasks_G[i].TaskID = NO_TASK_ID;
     }
     // then reinitialize
+    system_ticks = 0;
     current_task_count = 0;
     taskID_gen = 1;
     Error_code_G = ERROR_SCH_OK;
@@ -121,6 +128,7 @@ uint8_t SCH_Delete_Task(uint32_t taskID)
  */
 void SCH_Update(void)
 {
+    system_ticks++;
     if (SCH_tasks_G[0].pTask != 0)
     {
         if (SCH_tasks_G[0].Delay > 0)

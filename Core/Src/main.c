@@ -19,11 +19,13 @@
 /* Includes ------------------------------------------------------------------*/
 #include "main.h"
 #include "tim.h"
+#include "usart.h"
 #include "gpio.h"
 
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
 #include "scheduler.h"
+#include "stdio.h"
 /* USER CODE END Includes */
 
 /* Private typedef -----------------------------------------------------------*/
@@ -63,6 +65,17 @@ void HAL_TIM_PeriodElapsedCallback(TIM_HandleTypeDef *htim)
   }
 }
 
+int _write(int file, char *ptr, int len)
+{
+  HAL_UART_Transmit(&huart2, (uint8_t *)ptr, len, HAL_MAX_DELAY);
+  return len;
+}
+
+void task_Print_Time(void)
+{
+  printf("Time: %lu ms\r\n", get_time());
+}
+
 void task_LED_1(void)
 {
   HAL_GPIO_TogglePin(LED_RED_GPIO_Port, LED_RED_Pin);
@@ -81,6 +94,14 @@ void task_LED_4(void)
 }
 void task_LED_5(void)
 {
+  HAL_GPIO_TogglePin(LED_PURPLE_GPIO_Port, LED_PURPLE_Pin);
+}
+void task_light_all(void)
+{
+  HAL_GPIO_TogglePin(LED_RED_GPIO_Port, LED_RED_Pin);
+  HAL_GPIO_TogglePin(LED_BLUE_GPIO_Port, LED_BLUE_Pin);
+  HAL_GPIO_TogglePin(LED_YELLOW_GPIO_Port, LED_YELLOW_Pin);
+  HAL_GPIO_TogglePin(LED_ORANGE_GPIO_Port, LED_ORANGE_Pin);
   HAL_GPIO_TogglePin(LED_PURPLE_GPIO_Port, LED_PURPLE_Pin);
 }
 /* USER CODE END 0 */
@@ -115,9 +136,14 @@ int main(void)
   /* Initialize all configured peripherals */
   MX_GPIO_Init();
   MX_TIM2_Init();
+  MX_USART2_UART_Init();
   /* USER CODE BEGIN 2 */
   SCH_Init();
 
+  // Register task to fire every 10 ms
+  SCH_Add_Task(task_Print_Time, 0, 10);
+
+  SCH_Add_Task(task_light_all, 100, 0); // oneshot task
   SCH_Add_Task(task_LED_1, 0, 500);
   SCH_Add_Task(task_LED_2, 0, 1000);
   SCH_Add_Task(task_LED_3, 0, 1500);
