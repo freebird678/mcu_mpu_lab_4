@@ -1,0 +1,7 @@
+build/
+cmake/
+.mxproject
+CMakeLists.txt
+CMakePresets.json
+startup_stm32f103x6.s
+STM32F103xx_FLASH.ld
